@@ -1,0 +1,27 @@
+---
+import BasicLayout from "../layouts/BasicLayout.astro";
+
+
+
+import pizzas from "../content/data/pizzas.json";
+---
+
+<BasicLayout>
+  <h1 class="text-4xl font-bold text-center">Pizza</h1>
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mt-4">
+    {
+      pizzas.map((pizza) => (
+        <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+          <h2 class="text-xl font-bold">{pizza.pizzaName}</h2>
+            <ul class="list-disc pl-4">
+                {
+                    pizza.ingredients.map((ingredient) => (
+                    <li>{ingredient}</li>
+                    ))
+                }
+            </ul>
+        </div>
+      ))
+    }
+  </div>
+</BasicLayout>
