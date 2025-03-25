@@ -16,7 +16,7 @@ const blog = defineCollection({
 });
 
 const works = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
+	// Load Markdown and MDX files in the `src/content/works/` directory.
 	loader: glob({ base: './src/content/works', pattern: '**/*.{md,mdx}' }),
 	// Type-check frontmatter using a schema
 	schema: z.object({

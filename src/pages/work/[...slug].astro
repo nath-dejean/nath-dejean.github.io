@@ -4,18 +4,18 @@ import WorkPost from '../../layouts/WorkPost.astro';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
-	const works = await getCollection('work');
-	return works.map((work) => ({
-		params: { slug: work.id },
-		props: work,
+	const works = await getCollection('works');
+	return works.map((works) => ({
+		params: { slug: works.id },
+		props: works,
 	}));
 }
-type Props = CollectionEntry<'work'>;
+type Props = CollectionEntry<'works'>;
 
-const work = Astro.props;
-const { Content } = await render(work);
+const works = Astro.props;
+const { Content } = await render(works);
 ---
 
-<WorkPost {...work.data}>
+<WorkPost {...works.data}>
 	<Content />
 </WorkPost>
