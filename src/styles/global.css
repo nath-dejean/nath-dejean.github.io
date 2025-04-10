@@ -1,1 +1,63 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Charlie Display", serif;
+  --font-text: "Charlie Text", serif;
+
+  --color-bg: #0f0f11;
+  --color-surface: #1a1a1d;
+  --color-accent: #ff6b81;
+  --color-accent-light: #ff92a9;
+  --color-text: #f5f5f7;
+  --color-muted: #888;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-text);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-text);
+  }
+
+  a {
+    font-family: var(--font-display);
+    color: var(--color-accent);
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+
+  a:hover {
+    color: var(--color-accent-light);
+  }
+
+  code, pre {
+    background-color: var(--color-surface);
+    color: var(--color-accent-light);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+  }
+
+  img {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(255, 107, 129, 0.2);
+  }
+
+  blockquote {
+    border-left: 4px solid var(--color-accent);
+    padding-left: 1rem;
+    color: var(--color-muted);
+    font-style: italic;
+  }
+
+  hr {
+    border-color: var(--color-surface);
+  }
+}
