@@ -100,5 +100,10 @@
       width: 360px;
       height: 384px;
     }
+
+    .internal-links {
+      display: flex;
+      flex-wrap: nowrap;
+    }
   }
 }
