@@ -95,6 +95,10 @@
     height: 512px;
   }
 
+  .header-link {
+    font-size: 1.2rem !important;
+  }
+
   @media (max-width: 640px) {
     .iframe-work {
       width: 360px;
@@ -104,6 +108,10 @@
     .internal-links {
       display: flex;
       flex-wrap: nowrap;
+    }
+
+    .header-link {
+      font-size: 1rem !important;
     }
   }
 }
