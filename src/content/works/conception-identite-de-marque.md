@@ -25,7 +25,7 @@ Deux produits ont été développés, chacun associé à un genre cinématograph
 - Mise en scène en Apple Store : détournement d’une tablette numérique, “sans internet”, jouant sur le double sens
 - Affichage urbain : signalisation humoristique sur les “chutes de Chocoballs”, utilisant le slogan “in love with” de manière détournée
 
-<iframe style="margin-bottom: 2rem;" src="https://drive.google.com/file/d/1kKEDYRCgGslM8u3bog62tqYDyhpilwzo/preview" width="650" height="450" allow="autoplay" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+<iframe class="iframe-work" style="margin-bottom: 2rem;" src="https://drive.google.com/file/d/1kKEDYRCgGslM8u3bog62tqYDyhpilwzo/preview" width="650" height="450" allow="autoplay" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
 
 ### Aperçu
 
