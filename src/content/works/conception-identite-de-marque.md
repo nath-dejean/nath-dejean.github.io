@@ -1,7 +1,7 @@
 ---
 title: "Conception d'une identité visuelle — UGC Miam"
 description: "Création d'une identité visuelle et de packagings pour une marque fictive du groupe UGC"
-pubDate: '2025'
+pubDate: '2024-05'
 heroImage: '/UGCmiamThumbnail.png'
 tags: ['identité visuelle', 'packaging', 'UGC', 'MMI']
 auteur: "Nathan DEJEAN"

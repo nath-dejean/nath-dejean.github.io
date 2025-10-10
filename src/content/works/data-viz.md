@@ -1,7 +1,7 @@
 ---
 title: 'Projet Data Visualization'
 description: "Représentation de données autour de l'information, des usages numériques et des logiques algorithmiques"
-pubDate: '2025'
+pubDate: '2024-12'
 heroImage: '/datavizThumbnail.png'
 tags: ['data', 'visualisation', 'infographie', 'MMI']
 auteur: "Nathan DEJEAN"

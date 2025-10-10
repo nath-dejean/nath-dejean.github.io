@@ -1,9 +1,9 @@
 ---
-title: 'Projet Olive Oil'
+title: 'Arromanches D-Day Garden'
 description: "Conception d’une maquette one page pour un site e-commerce dédié à l’huile d’olive"
-pubDate: '2024-10'
-heroImage: '/OliveOilThumbnail.jpg'
-tags: ['UI design', 'e-commerce', 'luxueux', 'MMI']
+pubDate: '2024-04'
+heroImage: '/DDayGardenCover.jpg'
+tags: ['UI design', 'exposition', 'jardin', 'art']
 auteur: "Nathan DEJEAN"
 ---
 
@@ -23,10 +23,9 @@ Le projet a été orienté vers une identité visuelle luxueuse et épurée. L�
 
 - Présentation du produit et de son origine
 - Mise en avant des bénéfices (goût, production locale, qualité)
-- Appel à l’achat clair, intégré dans le déroulé
-- Version responsive optimisée
+- Appel à l’achat clair, intégré dans le déroulé e
 
-<iframe class="iframe-work" style="border: 1px solid rgba(0, 0, 0, 0.1); margin-bottom: 2rem;" width="720" height="512" src="https://embed.figma.com/proto/HLK9ckN4jVmG1dO252iF3i/NATHAN-DEJEAN---Olive-Oil?node-id=2007-78&amp;footer=false&amp;scaling=scale-down-width&amp;content-scaling=fixed&amp;page-id=2005%3A34&amp;starting-point-node-id=2007%3A78&amp;embed-host=share" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+<iframe class="iframe-work" style="border: 1px solid rgba(0, 0, 0, 0.1); margin-bottom: 2rem;" width="720" height="512" src="https://embed.figma.com/proto/O15mpsHWcFOsNLKRBNG3JJ/DEJEAN-Nathan---Normandy-s-D-day-Garden--Copy-?node-id=59-34&footer=false&amp;scaling=scale-down-width&amp;content-scaling=fixed&amp;page-id=2005%3A34&amp;starting-point-node-id=2007%3A78&amp;embed-host=share" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
 
 ### Aperçu
 

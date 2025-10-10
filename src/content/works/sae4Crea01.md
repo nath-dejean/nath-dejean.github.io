@@ -1,7 +1,7 @@
 ---
 title: 'Campagne de communication visuelle'
 description: "Création d'une campagne de communication visuelle dans le cadre de la SAE4.Crea.01"
-pubDate: '2025'
+pubDate: '2025-02'
 heroImage: '/BarFront.jpg'
 tags: ['communication', 'création visuelle', 'MMI']
 auteur: "Nathan DEJEAN"
