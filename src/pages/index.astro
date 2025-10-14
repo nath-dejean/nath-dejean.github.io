@@ -11,10 +11,201 @@ import MouseTrail from '../components/MouseTrail.astro';
 <html lang="fr">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      main.home-wrapper {
+        max-width: min(1040px, 100%);
+      }
+
+      section.home-section {
+        text-align: left;
+        padding-bottom: clamp(3rem, 6vw, 5rem);
+      }
+
+      .home-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: clamp(1.25rem, 3vw, 2.25rem);
+        margin-top: clamp(1.5rem, 3vw, 2.5rem);
+      }
+
+      .home-card {
+        --rx: 0deg;
+        --ry: 0deg;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: clamp(1.75rem, 3vw, 2.4rem);
+        background: rgba(5, 7, 21, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 22px;
+        box-shadow: var(--shadow-soft);
+        color: inherit;
+        text-decoration: none;
+        overflow: hidden;
+        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);
+        will-change: transform;
+      }
+
+      .home-card::before {
+        content: "";
+        position: absolute;
+        /* surface encore plus grande pour éviter de voir les bords du dégradé */
+        inset: -50% -40% -50% -40%;
+        background:
+          radial-gradient(
+            circle at center,
+            rgba(108, 243, 255, 0.24) 0%,
+            rgba(108, 243, 255, 0.16) 30%,
+            rgba(108, 243, 255, 0.08) 60%,
+            rgba(108, 243, 255, 0) 85%
+          );
+        opacity: 0;
+        /* lumière par défaut légèrement au-dessus du centre */
+        transform: translate3d(0, -12%, 0) scale(1.12);
+        transition: opacity 0.45s ease, transform 0.45s ease;
+        pointer-events: none;
+      }
+
+      .home-card::after {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        opacity: 0.4;
+        pointer-events: none;
+      }
+
+      .home-card .card-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.1rem;
+      }
+
+      .home-card .card-heading h3 {
+        margin: 0;
+        font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.6rem);
+        text-wrap: balance;
+      }
+
+      .home-card p {
+        margin: 0;
+        color: rgba(244, 247, 255, 0.78);
+        line-height: 1.55;
+        /* taille fluide et homogène */
+        font-size: clamp(1rem, 0.98rem + 0.2vw, 1.06rem);
+        text-wrap: pretty;
+        min-height: 3.6em;
+      }
+
+      .home-card .desc-long {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: clamp(1.75rem, 3vw, 2.4rem);
+        padding-inline: clamp(1.75rem, 3vw, 2.4rem);
+        opacity: 0;
+        transform: translate3d(0, 12px, 0);
+        transition: opacity 0.35s ease, transform 0.35s ease;
+      }
+
+      .home-card .desc-short {
+        transition: opacity 0.35s ease, transform 0.35s ease;
+      }
+
+      .home-card .card-arrow {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(108, 243, 255, 0.12);
+        color: var(--color-primary);
+        font-size: 1.1rem;
+        transition: transform 0.35s ease, background 0.35s ease;
+      }
+
+      .home-card.is-hovered::before {
+        opacity: 1;
+        /* damped + clamped by JS variables */
+        transform: translate3d(var(--lx, 0), var(--ly, -12%), 0) scale(1.2);
+      }
+
+      .home-card.is-hovered .desc-short {
+        opacity: 0;
+        transform: translate3d(0, -12px, 0);
+      }
+
+      .home-card.is-hovered .desc-long {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+
+      .home-card.is-hovered .card-arrow {
+        transform: translateX(8px) rotate(-25deg);
+        background: rgba(108, 243, 255, 0.28);
+      }
+
+      .home-card:hover {
+        border-color: rgba(108, 243, 255, 0.35);
+        box-shadow: var(--shadow-strong);
+      }
+
+      @media (max-width: 640px) {
+        .home-card {
+          padding: 1.6rem;
+          /* neutre sur mobile pour éviter l'effet trop "3D" */
+          transform: none !important;
+        }
+
+        .home-card::before {
+          /* lumière plus discrète sur mobile */
+          opacity: 0.55;
+          transform: translate3d(0, -8%, 0) scale(1.08);
+          background:
+            radial-gradient(
+              circle at center,
+              rgba(108, 243, 255, 0.14) 0%,
+              rgba(108, 243, 255, 0.08) 40%,
+              rgba(108, 243, 255, 0.04) 70%,
+              rgba(108, 243, 255, 0) 90%
+            );
+        }
+
+        .home-card .desc-long {
+          position: static;
+          padding: 0;
+        }
+
+        .home-card .desc-short {
+          display: none;
+        }
+
+        .home-card .desc-long {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .home-card {
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
+          transform: none !important;
+        }
+        .home-card::before {
+          transition: opacity 0.2s ease;
+          transform: translate3d(0, -10%, 0) scale(1.02) !important;
+          opacity: 1;
+        }
+      }
+    </style>
   </head>
   <body>
     <Header />
-    <main class="px-6 pt-20 max-w-3xl mx-auto text-center">
+    <main class="home-wrapper px-6 pt-20 mx-auto text-center">
       <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">👋 Salut, moi c’est Nathan</h1>
       <p class="text-lg text-muted mb-8">
         Étudiant en BUT MMI, je conçois des expériences numériques qui allient design, stratégie & créativité.
@@ -23,21 +214,115 @@ import MouseTrail from '../components/MouseTrail.astro';
         <a href="/work" class="px-6 py-3 bg-[var(--color-accent)] text-white rounded-xl hover:bg-[var(--color-accent-light)] transition">Voir mes projets</a>
         <a href="/about" class="px-6 py-3 border border-[var(--color-accent)] text-[var(--color-accent)] rounded-xl hover:bg-[var(--color-surface)] transition">En savoir plus</a>
       </div>
-      <section class="text-left">
+      <section class="home-section">
         <h2 class="text-2xl font-bold mb-2">À propos du site</h2>
         <p class="text-base text-muted mb-6">
           Ce portfolio est construit avec <strong>Astro</strong> & <strong>Tailwind CSS</strong>. Il me permet de documenter mes projets, mes idées, et d'expérimenter avec les technos web modernes.
         </p>
         <hr class="my-6 border-[var(--color-surface)]">
         <h3 class="text-xl font-semibold mb-2">Ce que vous pouvez explorer :</h3>
-        <ul class="list-disc list-inside text-muted">
-          <li><a href="/work" class="text-[var(--color-accent)] underline">Mes projets</a> réalisés en MMI ou perso</li>
-          <li><a href="/blog" class="text-[var(--color-accent)] underline">Des articles</a> sur le design et le numérique</li>
-          <li><a href="/about" class="text-[var(--color-accent)] underline">Une présentation</a> à propos de moi</li>
-        </ul>
+        <div class="home-grid">
+          <a href="/work" class="home-card reveal" data-card="projects">
+            <div class="card-heading">
+              <h3>Mes projets</h3>
+              <span class="card-arrow" aria-hidden="true">➔</span>
+            </div>
+            <p class="desc-short">
+              Une sélection de mes réalisations.
+            </p>
+            <p class="desc-long">
+              Retrouvez une partie de mes projets réalisés au cours des dernières années.
+            </p>
+          </a>
+          <a href="/blog" class="home-card reveal" data-card="articles">
+            <div class="card-heading">
+              <h3>Articles</h3>
+              <span class="card-arrow" aria-hidden="true">➔</span>
+            </div>
+            <p class="desc-short">
+              Mes notes autour du design & du numérique.
+            </p>
+            <p class="desc-long">
+              Des articles où je partage veille et retours d’expérience sur les nouveaux usages digitaux.
+            </p>
+          </a>
+          <a href="/about" class="home-card reveal" data-card="about">
+            <div class="card-heading">
+              <h3>Présentation</h3>
+              <span class="card-arrow" aria-hidden="true">➔</span>
+            </div>
+            <p class="desc-short">
+              Faites connaissance en quelques lignes.
+            </p>
+            <p class="desc-long">
+              Découvrez mon parcours et ce qui me motive à créer des expériences numériques.
+            </p>
+          </a>
+        </div>
       </section>
     </main>
     <Footer />
     <MouseTrail />
+    <script is:inline>
+      (() => {
+        const cards = document.querySelectorAll('.home-card');
+        if (!cards.length) return;
+
+        const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const disableInteractive = isCoarse || prefersReduced || window.innerWidth < 640;
+
+        cards.forEach((card) => {
+          requestAnimationFrame(() => {
+            card.classList.add('is-visible');
+          });
+
+          if (disableInteractive) return;
+
+          let rafId = null;
+
+          const onMove = (event) => {
+            if (rafId) return;
+            rafId = requestAnimationFrame(() => {
+              rafId = null;
+
+              const rect = card.getBoundingClientRect();
+              const x = event.clientX - rect.left;
+              const y = event.clientY - rect.top;
+
+              const nx = Math.max(-1, Math.min(1, (x / rect.width) * 2 - 1));
+              const ny = Math.max(-1, Math.min(1, (y / rect.height) * 2 - 1));
+
+              const rotateX = -ny * 6;
+              const rotateY = nx * 6;
+
+              const dampY = ny * 0.5;
+              const offsetY = -0.12;
+
+              const lx = nx * 35;
+              const ly = (dampY * 35) + (offsetY * 100);
+
+              const lyClamped = Math.max(-44, Math.min(16, ly));
+
+              card.style.setProperty('--rx', `${rotateX.toFixed(2)}deg`);
+              card.style.setProperty('--ry', `${rotateY.toFixed(2)}deg`);
+              card.style.setProperty('--lx', `${lx.toFixed(2)}%`);
+              card.style.setProperty('--ly', `${lyClamped.toFixed(2)}%`);
+              card.classList.add('is-hovered');
+            });
+          };
+
+          card.addEventListener('pointermove', onMove, { passive: true });
+
+          card.addEventListener('pointerleave', () => {
+            card.classList.remove('is-hovered');
+            card.style.setProperty('--rx', '0deg');
+            card.style.setProperty('--ry', '0deg');
+            card.style.removeProperty('--lx');
+            card.style.removeProperty('--ly');
+          }, { passive: true });
+        });
+      })();
+    </script>
   </body>
 </html>
