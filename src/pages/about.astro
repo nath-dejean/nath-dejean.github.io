@@ -1,30 +1,215 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import BasicLayout from '../layouts/BasicLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const title = "À propos";
+const description = "Étudiant en MMI passionné par le design et les projets créatifs";
+const pubDate = new Date('April 01 2025');
+const heroImage = "/PhotoProfilv3.jpg";
 ---
 
-<Layout
-	title="À propos"
-	description="Étudiant en MMI passionné par le design et les projets créatifs"
-	pubDate={new Date('April 01 2025')}
-	heroImage="/PhotoProfil.png"
->
+<BasicLayout>
+	<Fragment slot="head">
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<style>
+			article {
+				position: relative;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: clamp(3rem, 2vw, 5rem) clamp(1.5rem, 5vw, 3rem) clamp(2rem, 4vw, 3rem);
+			}
 
-	<p>
-		Hello, moi c’est Nathan Dejean — étudiant en 2<sup>ème</sup> année de BUT MMI (Métiers du Multimédia et de l’Internet).
-		Je m’intéresse particulièrement à la conception graphique, l’UX/UI design et à tout ce qui touche à la création numérique.
-	</p>
+			.about-container {
+				position: relative;
+				isolation: isolate;
+			}
 
-	<p>
-		Dans le cadre de mes études, je participe à de nombreux projets — en équipe ou en solo — mêlant design, développement web, stratégie de communication, audiovisuel ou encore création de contenu.
-		Ces expériences me permettent d'explorer une diversité de savoir-faire tout en cultivant une approche créative et rigoureuse.
-	</p>
+			.about-hero {
+				padding: clamp(2rem, 5vw, 2rem) 0;
+				text-align: center;
+				position: relative;
+			}
 
-	<p>
-		En parallèle, je développe aussi des projets plus personnels, comme ce blog, pour expérimenter, apprendre et partager mes travaux. Vous pouvez retrouver une sélection des travaux réalisés dans la section <a href="/work">Works</a>.
-	</p>
+			.about-hero .badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.45rem 1.5rem;
+				font-size: 0.68rem;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				font-weight: 700;
+				background: linear-gradient(135deg, #6cf3ff, #a772ff);
+				color: rgba(5, 5, 17, 0.92);
+				border-radius: 999px;
+				box-shadow: 0 8px 24px -12px rgba(108, 243, 255, 0.6);
+				margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+			}
 
-	<p>
-		Je suis toujours curieux de découvrir de nouvelles choses et d’échanger avec d’autres créatifs. N’hésite pas à me suivre ou à me contacter via <a href="https://www.linkedin.com/in/nathandejean/" target="_blank">LinkedIn</a> ou <a href="https://github.com/nath-dejean" target="_blank">GitHub</a>.
-	</p>
+			.about-hero h1 {
+				margin: 0 0 clamp(1rem, 2.5vw, 1.8rem);
+				font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+				line-height: 1.12;
+				color: rgba(247, 249, 255, 0.98);
+				text-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+				font-weight: 600;
+				letter-spacing: -0.02em;
+			}
 
-</Layout>
+			.about-hero p {
+				margin: 0 auto;
+				max-width: 68ch;
+				font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+				color: rgba(243, 246, 255, 0.78);
+				line-height: 1.68;
+			}
+
+			.about-media {
+				margin: clamp(0rem,0vw,0vw) auto;
+				max-width: 300px;
+				position: relative;
+			}
+
+			.profile-image {
+				position: relative;
+				/* border-radius: 20px; */
+				overflow: hidden;
+				/* box-shadow: 
+					0 0 0 1px rgba(255, 255, 255, 0.08),
+					0 24px 60px -20px rgba(0, 0, 0, 0.4),
+					0 8px 24px -8px rgba(108, 243, 255, 0.15); */
+				/* background: linear-gradient(135deg, rgba(108, 243, 255, 0.08), rgba(167, 114, 255, 0.08)); */
+				transform-origin: center;
+				transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+			}
+
+			.profile-image:hover {
+				transform: scale(1.02);
+			}
+
+			.profile-image::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				/* background: linear-gradient(135deg, rgba(108, 243, 255, 0.12), rgba(167, 114, 255, 0.08)); */
+				opacity: 0;
+				transition: opacity 0.5s ease;
+				pointer-events: none;
+				z-index: 1;
+			}
+
+			.profile-image:hover::before {
+				opacity: 1;
+			}
+
+			.profile-image img {
+				display: block;
+				width: 100%;
+				height: auto;
+				object-fit: cover;
+			}
+
+			.about-body {
+				padding: clamp(2rem, 3vw, 3.5rem) 0 0;
+			}
+
+			.about-prose {
+				max-width: 820px;
+				margin: 0 auto;
+				padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 2.5rem);
+				background: rgba(255, 255, 255, 0.02);
+				backdrop-filter: blur(12px);
+				border-radius: 18px;
+				border: 1px solid rgba(255, 255, 255, 0.06);
+				box-shadow: 
+					0 0 0 1px rgba(255, 255, 255, 0.03),
+					0 12px 36px -12px rgba(0, 0, 0, 0.25);
+			}
+
+			.about-prose :global(p) {
+				color: rgba(243, 246, 255, 0.82);
+				line-height: 1.75;
+				margin-bottom: 1.5rem;
+				font-size: clamp(1rem, 1.6vw, 1.1rem);
+			}
+
+			.about-prose :global(p:last-child) {
+				margin-bottom: 0;
+			}
+
+			.about-prose :global(a) {
+				color: #6cf3ff;
+				text-decoration: none;
+				border-bottom: 1px solid rgba(108, 243, 255, 0.3);
+				transition: border-color 0.3s ease;
+			}
+
+			.about-prose :global(a:hover) {
+				border-bottom-color: #6cf3ff;
+			}
+
+			.about-prose :global(sup) {
+				font-size: 0.7em;
+			}
+
+			@media (max-width: 768px) {
+				article {
+					padding: clamp(2rem, 8vw, 3rem) clamp(1rem, 4vw, 1.5rem) clamp(3rem, 10vw, 4rem);
+				}
+
+				.about-hero h1 {
+					font-size: clamp(1.8rem, 7vw, 2.5rem);
+				}
+
+				.about-media {
+					max-width: 100%;
+				}
+
+				.about-prose {
+					padding: clamp(1.5rem, 5vw, 2rem) clamp(1rem, 4vw, 1.5rem);
+				}
+			}
+		</style>
+	</Fragment>
+
+	<article>
+		<div class="about-container">
+			<section class="about-hero reveal">
+				<span class="badge">About me</span>
+				<h1>{title}</h1>
+				<p>{description}</p>
+			</section>
+			
+			{heroImage && (
+				<section class="about-media reveal">
+					<div class="profile-image">
+						<img width={500} height={500} src={heroImage} alt="Nathan Dejean" loading="lazy" />
+					</div>
+				</section>
+			)}
+			
+			<section class="about-body reveal">
+				<div class="about-prose">
+					<p>
+						Hello, moi c'est Nathan Dejean — étudiant en 2<sup>ème</sup> année de BUT MMI (Métiers du Multimédia et de l'Internet).
+						Je m'intéresse particulièrement à la conception graphique, l'UX/UI design et à tout ce qui touche à la création numérique.
+					</p>
+
+					<p>
+						Dans le cadre de mes études, je participe à de nombreux projets — en équipe ou en solo — mêlant design, développement web, stratégie de communication, audiovisuel ou encore création de contenu.
+						Ces expériences me permettent d'explorer une diversité de savoir-faire tout en cultivant une approche créative et rigoureuse.
+					</p>
+
+					<p>
+						En parallèle, je développe aussi des projets plus personnels, comme ce blog, pour expérimenter, apprendre et partager mes travaux. Vous pouvez retrouver une sélection des travaux réalisés dans la section <a href="/work">Works</a>.
+					</p>
+
+					<p>
+						Je suis toujours curieux de découvrir de nouvelles choses et d'échanger avec d'autres créatifs. N'hésite pas à me suivre ou à me contacter via <a href="https://www.linkedin.com/in/nathandejean/" target="_blank">LinkedIn</a> ou <a href="https://github.com/nath-dejean" target="_blank">GitHub</a>.
+					</p>
+				</div>
+			</section>
+		</div>
+	</article>
+</BasicLayout>
