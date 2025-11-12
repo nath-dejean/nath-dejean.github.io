@@ -1,7 +1,7 @@
 ---
 title: "Pourquoi j’ai choisi Astro pour mon site"
 description: "Retour sur les raisons techniques et personnelles derrière le choix d’Astro comme moteur de mon portfolio"
-pubDate: "Apr 10 2025"
+pubDate: "Sep 14 2025"
 heroImage: "/astroThumbnail.webp"
 tags: ['astro', 'web', 'framework', 'site perso']
 auteur: "Nathan DEJEAN"

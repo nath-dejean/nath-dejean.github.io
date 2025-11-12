@@ -1,0 +1,368 @@
+---
+// CV Modal Component
+---
+
+<div id="cv-modal" class="cv-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cv-modal-title">
+	<div class="cv-modal-overlay" data-close-modal></div>
+	<div class="cv-modal-container">
+		<div class="cv-modal-header">
+			<div class="cv-header-left">
+				<h2 id="cv-modal-title">Curriculum Vitae</h2>
+				<span class="cv-subtitle">Nathan DEJEAN · Étudiant BUT MMI</span>
+			</div>
+			<div class="cv-header-actions">
+				<button class="cv-action-btn" id="zoom-out" title="Zoom out" aria-label="Zoom out">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<circle cx="11" cy="11" r="8"></circle>
+						<path d="M21 21l-4.35-4.35"></path>
+						<line x1="8" y1="11" x2="14" y2="11"></line>
+					</svg>
+				</button>
+				<button class="cv-action-btn" id="zoom-in" title="Zoom in" aria-label="Zoom in">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<circle cx="11" cy="11" r="8"></circle>
+						<path d="M21 21l-4.35-4.35"></path>
+						<line x1="11" y1="8" x2="11" y2="14"></line>
+						<line x1="8" y1="11" x2="14" y2="11"></line>
+					</svg>
+				</button>
+				<button class="cv-action-btn" id="download-cv" title="Download CV" aria-label="Download CV">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+						<polyline points="7 10 12 15 17 10"></polyline>
+						<line x1="12" y1="15" x2="12" y2="3"></line>
+					</svg>
+				</button>
+				<a href="mailto:nathan.dejean@example.com" class="cv-action-btn cv-contact-btn" title="Contact" aria-label="Contact via email">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+						<polyline points="22,6 12,13 2,6"></polyline>
+					</svg>
+				</a>
+				<button class="cv-close-btn" data-close-modal aria-label="Close modal">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="18" y1="6" x2="6" y2="18"></line>
+						<line x1="6" y1="6" x2="18" y2="18"></line>
+					</svg>
+				</button>
+			</div>
+		</div>
+		<div class="cv-modal-body">
+			<div class="cv-viewer" id="cv-viewer">
+				<div class="cv-loading">
+					<div class="cv-spinner"></div>
+					<p>Chargement du CV...</p>
+				</div>
+
+				<iframe 
+					id="cv-iframe" 
+					src="public\NathanDEJEAN_WebCVFR-violet.pdf"
+					title="Curriculum Vitae de Nathan DEJEAN"
+					style="display: none;"
+				></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.cv-modal {
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.3s ease, visibility 0.3s ease;
+	}
+
+	.cv-modal[aria-hidden="false"] {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.cv-modal-overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(5, 5, 17, 0.92);
+		backdrop-filter: blur(12px);
+		cursor: pointer;
+	}
+
+	.cv-modal-container {
+		position: relative;
+		width: 95vw;
+		max-width: 1400px;
+		height: 92vh;
+		display: flex;
+		flex-direction: column;
+		background: linear-gradient(145deg, rgba(12, 16, 38, 0.98), rgba(5, 7, 21, 0.96));
+		border-radius: 24px;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		box-shadow: 
+			0 0 0 1px rgba(255, 255, 255, 0.06),
+			0 48px 120px -24px rgba(0, 0, 0, 0.6);
+		transform: scale(0.95);
+		transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+		overflow: hidden;
+	}
+
+	.cv-modal[aria-hidden="false"] .cv-modal-container {
+		transform: scale(1);
+	}
+
+	.cv-modal-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding: 1.5rem 2rem;
+		background: rgba(255, 255, 255, 0.02);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		flex-shrink: 0;
+	}
+
+	.cv-header-left {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.cv-modal-header h2 {
+		margin: 0;
+		font-size: 1.4rem;
+		font-weight: 600;
+		color: rgba(247, 249, 255, 0.98);
+		letter-spacing: -0.01em;
+	}
+
+	.cv-subtitle {
+		font-size: 0.9rem;
+		color: rgba(243, 246, 255, 0.65);
+	}
+
+	.cv-header-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.cv-action-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 42px;
+		height: 42px;
+		border: none;
+		background: rgba(255, 255, 255, 0.06);
+		color: rgba(243, 246, 255, 0.85);
+		border-radius: 10px;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		text-decoration: none;
+	}
+
+	.cv-action-btn:hover {
+		background: rgba(108, 243, 255, 0.15);
+		color: #6cf3ff;
+		transform: translateY(-2px);
+	}
+
+	.cv-contact-btn {
+		background: linear-gradient(135deg, #6cf3ff, #a772ff);
+		color: rgba(5, 5, 17, 0.92);
+	}
+
+	.cv-contact-btn:hover {
+		transform: translateY(-2px) scale(1.05);
+		box-shadow: 0 8px 20px -8px rgba(108, 243, 255, 0.6);
+	}
+
+	.cv-close-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 42px;
+		height: 42px;
+		border: none;
+		background: rgba(255, 80, 80, 0.12);
+		color: rgba(255, 120, 120, 0.95);
+		border-radius: 10px;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		margin-left: 0.5rem;
+	}
+
+	.cv-close-btn:hover {
+		background: rgba(255, 80, 80, 0.2);
+		transform: rotate(90deg);
+	}
+
+	.cv-modal-body {
+		flex: 1;
+		overflow: hidden;
+		position: relative;
+	}
+
+	.cv-viewer {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.2);
+		overflow: auto;
+	}
+
+	.cv-loading {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		color: rgba(243, 246, 255, 0.7);
+	}
+
+	.cv-spinner {
+		width: 40px;
+		height: 40px;
+		border: 3px solid rgba(255, 255, 255, 0.1);
+		border-top-color: #6cf3ff;
+		border-radius: 50%;
+		animation: spin 0.8s linear infinite;
+	}
+
+	@keyframes spin {
+		to { transform: rotate(360deg); }
+	}
+
+	#cv-iframe {
+		width: 100%;
+		height: 100%;
+		border: none;
+		background: white;
+		transform: scale(var(--zoom, 1));
+		transform-origin: top center;
+		transition: transform 0.2s ease;
+	}
+
+	#cv-iframe.loaded {
+		display: block;
+	}
+
+	@media (max-width: 768px) {
+		.cv-modal-container {
+			width: 100vw;
+			height: 100vh;
+			border-radius: 0;
+		}
+
+		.cv-modal-header {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1rem;
+			padding: 1rem 1.25rem;
+		}
+
+		.cv-header-actions {
+			width: 100%;
+			justify-content: flex-end;
+		}
+
+		.cv-action-btn,
+		.cv-close-btn {
+			width: 38px;
+			height: 38px;
+		}
+	}
+</style>
+
+<script>
+	// CV Modal functionality
+	const modal = document.getElementById('cv-modal');
+	const iframe = document.getElementById('cv-iframe');
+	const loading = document.querySelector('.cv-loading');
+	const zoomInBtn = document.getElementById('zoom-in');
+	const zoomOutBtn = document.getElementById('zoom-out');
+	const downloadBtn = document.getElementById('download-cv');
+	
+	let currentZoom = 1;
+	const zoomStep = 0.1;
+	const minZoom = 0.5;
+	const maxZoom = 2;
+
+	// Open modal
+	window.openCVModal = () => {
+		if (modal) {
+			modal.setAttribute('aria-hidden', 'false');
+			document.body.style.overflow = 'hidden';
+		}
+	};
+
+	// Close modal
+	const closeModal = () => {
+		if (modal) {
+			modal.setAttribute('aria-hidden', 'true');
+			document.body.style.overflow = '';
+		}
+	};
+
+	// Close on overlay click or close button
+	document.querySelectorAll('[data-close-modal]').forEach(element => {
+		element.addEventListener('click', closeModal);
+	});
+
+	// Close on Escape key
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && modal?.getAttribute('aria-hidden') === 'false') {
+			closeModal();
+		}
+	});
+
+	// Handle iframe load
+	if (iframe) {
+		iframe.addEventListener('load', () => {
+			if (loading) loading.style.display = 'none';
+			iframe.style.display = 'block';
+			iframe.classList.add('loaded');
+		});
+
+		iframe.addEventListener('error', () => {
+			if (loading) {
+				loading.innerHTML = '<p style="color: rgba(255, 120, 120, 0.9);">❌ Erreur lors du chargement du CV</p>';
+			}
+		});
+	}
+
+	// Zoom controls
+	if (zoomInBtn) {
+		zoomInBtn.addEventListener('click', () => {
+			if (currentZoom < maxZoom) {
+				currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
+				iframe.style.setProperty('--zoom', currentZoom);
+			}
+		});
+	}
+
+	if (zoomOutBtn) {
+		zoomOutBtn.addEventListener('click', () => {
+			if (currentZoom > minZoom) {
+				currentZoom = Math.max(minZoom, currentZoom - zoomStep);
+				iframe.style.setProperty('--zoom', currentZoom);
+			}
+		});
+	}
+
+	// Download CV
+	if (downloadBtn) {
+		downloadBtn.addEventListener('click', () => {
+			const link = document.createElement('a');
+			link.href = '/cv.pdf';
+			link.download = 'CV_Nathan_DEJEAN.pdf';
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		});
+	}
+</script>

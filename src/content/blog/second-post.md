@@ -1,7 +1,7 @@
 ---
 title: "L’intelligence artificielle dans l’art : menace ou nouvelle palette ?"
 description: "Réflexion sur les apports et les limites de l'IA dans les processus créatifs"
-pubDate: "Apr 10 2025"
+pubDate: "Oct 2 2025"
 heroImage: "/aiThumbnail.jpg"
 tags: ['intelligence artificielle', 'création', 'design', 'culture']
 auteur: "Nathan DEJEAN"

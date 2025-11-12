@@ -1,7 +1,7 @@
 ---
 title: "Utiliser Tailwind CSS : flexibilité sans surcharge"
 description: "Retour d’expérience sur un framework qui change la manière de concevoir les interfaces"
-pubDate: "Apr 10 2025"
+pubDate: "Aug 8 2025"
 heroImage: "/tailwindThumbnail.png"
 tags: ['tailwind', 'css', 'design system', 'web']
 auteur: "Nathan DEJEAN"
