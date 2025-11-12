@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Charlie Display";
-  src: url("public/fonts/CharlieDisplay-Bold.woff2") format("woff2");
+  src: url("fonts/CharlieDisplay-Bold.woff2") format("woff2");
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: "Charlie Text";
-  src: url("public/fonts/CharlieText.woff2") format("woff2");
+  src: url("fonts/CharlieText.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
