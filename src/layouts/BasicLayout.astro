@@ -10,8 +10,6 @@ import "../styles/global.css";
 <html lang="en">
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-        <slot name="head" />
     </head>
     <body>
         <div class="background-canvas" aria-hidden="true">
@@ -94,17 +92,6 @@ import "../styles/global.css";
                     revealables.forEach((element) => observer.observe(element));
                 }
             })();
-        </script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script is:inline>
-            AOS.init({
-                duration: 800,
-                easing: 'ease-out-cubic',
-                once: true,
-                offset: 50,
-                delay: 0,
-                anchorPlacement: 'top-bottom'
-            });
         </script>
     </body>
 </html>

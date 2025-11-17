@@ -442,10 +442,10 @@ import CVModal from '../components/CVModal.astro';
   <body>
     <Header />
     <main class="home-wrapper px-6 pt-20 mx-auto">
-      <section class="hero" data-aos="fade-up" data-aos-duration="1000">
+      <section class="hero">
         <div class="hero-glow" aria-hidden="true"></div>
         <div class="hero-grid">
-          <div class="hero-content" data-aos="fade-right" data-aos-delay="200">
+          <div class="hero-content">
         <span class="hero-badge">
           <span class="dot"></span>
           Portfolio · Expériences numériques
@@ -459,7 +459,7 @@ import CVModal from '../components/CVModal.astro';
           <a href="/about" class="max-h-14 px-6 py-3 border border-[var(--color-accent)] text-[var(--color-accent)] rounded-xl hover:bg-[var(--color-surface)] transition">En savoir plus</a>
         </div>
           </div>
-          <div class="hero-showcase" data-aos="fade-left" data-aos-delay="400">
+          <div class="hero-showcase">
         <div class="hero-mini-cards">
           <div class="hero-mini">
             <span>Graphisme</span>
@@ -487,15 +487,15 @@ import CVModal from '../components/CVModal.astro';
           </div>
         </div>
       </section>
-      <section class="home-section" data-aos="fade-up" data-aos-delay="100">
-        <h2 class="text-2xl font-bold mb-2" data-aos="fade-up" data-aos-delay="200">À propos du site</h2>
+      <section class="home-section">
+        <h2 class="text-2xl font-bold mb-2">À propos du site</h2>
         <p class="text-base text-muted mb-6">
           Ce portfolio est construit avec <strong>Astro</strong> &amp; <strong>Tailwind CSS</strong>. Il me permet de documenter mes projets, mes idées, et d'expérimenter avec les technos web modernes.
         </p>
         <hr class="my-6 border-[var(--color-surface)]">
         <h3 class="text-xl font-semibold mb-2">Ce que vous pouvez explorer :</h3>
         <div class="home-grid">
-          <a href="/work" class="home-card reveal" data-card="projects" data-aos="zoom-in" data-aos-delay="100">
+          <a href="/work" class="home-card reveal" data-card="projects">
             <div class="card-heading">
               <h3>Mes projets</h3>
               <span class="card-arrow" aria-hidden="true">➔</span>
@@ -507,7 +507,7 @@ import CVModal from '../components/CVModal.astro';
               Retrouvez une partie de mes projets réalisés au cours des dernières années.
             </p>
           </a>
-          <a href="/blog" class="home-card reveal" data-card="articles" data-aos="zoom-in" data-aos-delay="200">
+          <a href="/blog" class="home-card reveal" data-card="articles">
             <div class="card-heading">
               <h3>Articles</h3>
               <span class="card-arrow" aria-hidden="true">➔</span>
@@ -519,7 +519,7 @@ import CVModal from '../components/CVModal.astro';
               Des articles où je partage veille et retours d’expérience sur les nouveaux usages digitaux.
             </p>
           </a>
-          <a href="/about" class="home-card reveal" data-card="about" data-aos="zoom-in" data-aos-delay="300">
+          <a href="/about" class="home-card reveal" data-card="about">
             <div class="card-heading">
               <h3>Présentation</h3>
               <span class="card-arrow" aria-hidden="true">➔</span>

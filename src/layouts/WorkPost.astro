@@ -240,7 +240,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 	<article>
 		<div class="work-container">
-			<section class="work-hero reveal" data-aos="fade-down" data-aos-duration="1000">
+			<section class="work-hero reveal">
 				<span class="badge">Travaux réalisés</span>
 				<h1>{title}</h1>
 				<p>{description}</p>
@@ -255,14 +255,14 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			</section>
 			
 			{heroImage && (
-				<section class="work-media reveal" data-aos="zoom-in" data-aos-delay="200">
+				<section class="work-media reveal">
 					<div class="hero-image">
 						<img width={1200} height={640} src={heroImage} alt={title} loading="lazy" />
 					</div>
 				</section>
 			)}
 			
-			<section class="work-body reveal" data-aos="fade-up" data-aos-delay="400">
+			<section class="work-body reveal">
 				<div class="work-prose">
 					<slot />
 				</div>

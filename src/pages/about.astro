@@ -175,21 +175,21 @@ const heroImage = "/PhotoProfilv3.jpg";
 
 	<article>
 		<div class="about-container">
-			<section class="about-hero reveal" data-aos="fade-down" data-aos-duration="1000">
+			<section class="about-hero reveal">
 				<span class="badge">About me</span>
 				<h1>{title}</h1>
 				<p>{description}</p>
 			</section>
 			
 			{heroImage && (
-				<section class="about-media reveal" data-aos="zoom-in" data-aos-delay="200">
+				<section class="about-media reveal">
 					<div class="profile-image">
 						<img width={500} height={500} src={heroImage} alt="Nathan Dejean" loading="lazy" />
 					</div>
 				</section>
 			)}
 			
-			<section class="about-body reveal" data-aos="fade-up" data-aos-delay="400">
+			<section class="about-body reveal">
 				<div class="about-prose">
 					<p>
 						Hello, moi c'est Nathan Dejean — étudiant en 2<sup>ème</sup> année de BUT MMI (Métiers du Multimédia et de l'Internet).

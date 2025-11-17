@@ -15,7 +15,6 @@ const works = (await getCollection('works')).sort(
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
     <style>
       main {
         width: 100%;
@@ -75,11 +74,11 @@ const works = (await getCollection('works')).sort(
   <body>
     <Header />
     <main>
-      <section data-aos="fade-up">
+      <section>
         <ul>
           {
-            works.map((work, index) => (
-              <li data-aos="fade-up" data-aos-delay={index * 100}>
+            works.map((work) => (
+              <li>
                 <a href={`/work/${work.id}/`}>
                   <div class="thumb">
                     <img src={work.data.heroImage} alt="" />
@@ -96,14 +95,5 @@ const works = (await getCollection('works')).sort(
       </section>
     </main>
     <Footer />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script is:inline>
-      AOS.init({
-        duration: 800,
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 50
-      });
-    </script>
   </body>
 </html>
