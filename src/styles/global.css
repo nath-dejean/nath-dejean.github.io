@@ -275,11 +275,12 @@
     font-family: var(--font-display);
     font-size: 0.95rem;
     letter-spacing: 0.04em;
-    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
     backdrop-filter: blur(6px);
   }
 
   .button-ghost:hover {
+    color: var(--color-primary);
     transform: translateY(-3px);
     border-color: rgba(108, 243, 255, 0.55);
     background: rgba(108, 243, 255, 0.12);
@@ -678,7 +679,7 @@
     font-family: var(--font-display);
     font-size: 0.95rem;
     letter-spacing: 0.04em;
-    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
     backdrop-filter: blur(6px);
   }
 

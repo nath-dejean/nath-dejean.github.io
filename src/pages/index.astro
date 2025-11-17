@@ -6,6 +6,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 import MouseTrail from '../components/MouseTrail.astro';
 import CVModal from '../components/CVModal.astro';
+import AnimatedBackground from '../components/AnimatedBackground.astro';
 ---
 
 <!doctype html>
@@ -380,9 +381,10 @@ import CVModal from '../components/CVModal.astro';
         }
 
         .hero-mini {
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 0.55rem;
         }
 
         .home-card {
@@ -440,45 +442,46 @@ import CVModal from '../components/CVModal.astro';
     </style>
   </head>
   <body>
+    <AnimatedBackground />
     <Header />
     <main class="home-wrapper px-6 pt-20 mx-auto">
       <section class="hero">
         <div class="hero-glow" aria-hidden="true"></div>
         <div class="hero-grid">
           <div class="hero-content">
-        <span class="hero-badge">
+        <span class="hero-badge" data-aos="fade-up" data-aos-delay="100">
           <span class="dot"></span>
           Portfolio · Expériences numériques
         </span>
-        <h1>Nathan DEJEAN</h1>
-        <p>
+        <h1 data-aos="fade-up" data-aos-delay="200">Nathan DEJEAN</h1>
+        <p data-aos="fade-up" data-aos-delay="300">
           Étudiant en BUT MMI, je donne vie à des interfaces immersives où design, stratégie et créativité s’articulent pour créer des expériences qui marquent.
         </p>
-        <div class="hero-actions">
+        <div class="hero-actions" data-aos="fade-up" data-aos-delay="400">
           <a href="/work" class="max-h-14 px-6 py-3 bg-[var(--color-accent)] text-white rounded-xl hover:bg-[var(--color-accent-light)] transition">Voir mes projets</a>
           <a href="/about" class="max-h-14 px-6 py-3 border border-[var(--color-accent)] text-[var(--color-accent)] rounded-xl hover:bg-[var(--color-surface)] transition">En savoir plus</a>
         </div>
           </div>
           <div class="hero-showcase">
         <div class="hero-mini-cards">
-          <div class="hero-mini">
+          <div class="hero-mini" data-aos="fade-left" data-aos-delay="200">
             <span>Graphisme</span>
             <strong>Illustrator, Photoshop, Figma</strong>
           </div>
-          <div class="hero-mini">
+          <div class="hero-mini" data-aos="fade-left" data-aos-delay="300">
             <span>UI/UX</span>
             <strong>Figma</strong>
           </div>
-          <div class="hero-mini">
+          <div class="hero-mini" data-aos="fade-left" data-aos-delay="400">
             <span>Développement</span>
             <strong>HTML · CSS · Tailwind · JavaScript · PHP</strong>
           </div>
-          <div class="hero-mini">
+          <div class="hero-mini" data-aos="fade-left" data-aos-delay="500">
             <span>SEO</span>
             <strong>Google Analytics · Lighthouse · Autres Extensions SEO</strong>
           </div>
         </div>
-        <div class="justify-self-center">
+        <div class="justify-self-center" data-aos="fade-left" data-aos-delay="600">
           <button onclick="window.openCVModal()" class="inline-flex items-center justify-end gap-2 px-5 py-2 border border-[var(--color-accent)] bg-[var(--color-accent)] text-white rounded-lg hover:bg-[var(--color-surface)] transition cursor-pointer">
             Voir mon CV
             <span aria-hidden="true">↗</span>
@@ -488,14 +491,14 @@ import CVModal from '../components/CVModal.astro';
         </div>
       </section>
       <section class="home-section">
-        <h2 class="text-2xl font-bold mb-2">À propos du site</h2>
-        <p class="text-base text-muted mb-6">
+        <h2 class="text-2xl font-bold mb-2" data-aos="fade-up">À propos du site</h2>
+        <p class="text-base text-muted mb-6" data-aos="fade-up" data-aos-delay="100">
           Ce portfolio est construit avec <strong>Astro</strong> &amp; <strong>Tailwind CSS</strong>. Il me permet de documenter mes projets, mes idées, et d'expérimenter avec les technos web modernes.
         </p>
-        <hr class="my-6 border-[var(--color-surface)]">
-        <h3 class="text-xl font-semibold mb-2">Ce que vous pouvez explorer :</h3>
+        <hr class="my-6 border-[var(--color-surface)]" data-aos="fade" data-aos-delay="150">
+        <h3 class="text-xl font-semibold mb-2" data-aos="fade-up" data-aos-delay="200">Ce que vous pouvez explorer :</h3>
         <div class="home-grid">
-          <a href="/work" class="home-card reveal" data-card="projects">
+          <a href="/work" class="home-card reveal" data-card="projects" data-aos="fade-up" data-aos-delay="100">
             <div class="card-heading">
               <h3>Mes projets</h3>
               <span class="card-arrow" aria-hidden="true">➔</span>
@@ -507,7 +510,7 @@ import CVModal from '../components/CVModal.astro';
               Retrouvez une partie de mes projets réalisés au cours des dernières années.
             </p>
           </a>
-          <a href="/blog" class="home-card reveal" data-card="articles">
+          <a href="/blog" class="home-card reveal" data-card="articles" data-aos="fade-up" data-aos-delay="200">
             <div class="card-heading">
               <h3>Articles</h3>
               <span class="card-arrow" aria-hidden="true">➔</span>
@@ -516,10 +519,10 @@ import CVModal from '../components/CVModal.astro';
               Mes notes autour du design &amp; du numérique.
             </p>
             <p class="desc-long">
-              Des articles où je partage veille et retours d’expérience sur les nouveaux usages digitaux.
+              Des articles où je partage veille et retours d’expérience.
             </p>
           </a>
-          <a href="/about" class="home-card reveal" data-card="about">
+          <a href="/about" class="home-card reveal" data-card="about" data-aos="fade-up" data-aos-delay="300">
             <div class="card-heading">
               <h3>Présentation</h3>
               <span class="card-arrow" aria-hidden="true">➔</span>
