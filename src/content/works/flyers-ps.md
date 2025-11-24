@@ -28,11 +28,8 @@ Dans le cadre de la SAE5.Crea.01, ce projet propose un travail de création grap
   - Flyer “Art et Feu”, fond fleuri, flammes, contraste fort et inspiration techno contemporaine
 - Série cohérente : couleurs vives, contours dynamiques, effets nuage/papier collé, ancrage local et européen
 
-<iframe class="iframe-work" style="margin-bottom: 2rem;" src="https://drive.google.com/file/d/1cXexVHYw9_axNgE-tg9_ttzN5TFGFUWm/preview" width="650" height="450" allow="autoplay" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+<iframe class="iframe-work" style="margin-bottom: 2rem;" src="https://drive.google.com/file/d/1Vw3UiPGa6LMc3Kz-nrcG5OUL5WY-gxj9/preview" width="650" height="450" allow="autoplay" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
 
 ### En savoir plus
 
-![1er Flyer full](/FlyerHiero1.jpg)
-![2eme Flyer full](/FlyerHiero2.jpg)
-![3eme Flyer full](/FlyerHiero3.jpg)
-![4eme Flyer full](/FlyerHiero4.jpg)
+![Aperçu du premier Flyer réalisé](/FlyerHiero1.jpg)
