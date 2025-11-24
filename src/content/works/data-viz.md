@@ -15,17 +15,17 @@ Ce projet explore les usages de l'information en France, en s'appuyant sur des d
 
 ### Contenu
 
-- Répartition des sources d’information selon les tranches d’âge
-- Usage des réseaux sociaux et plateformes numériques
-- Degré de confiance envers les médias traditionnels
-- Dépendance aux algorithmes et effets de bulle informationnelle
-- Mise en évidence de la diversité (ou non) des points de vue consultés
+- • Répartition des sources d’information selon les tranches d’âge
+- • Usage des réseaux sociaux et plateformes numériques
+- • Degré de confiance envers les médias traditionnels
+- • Dépendance aux algorithmes et effets de bulle informationnelle
+- • Mise en évidence de la diversité (ou non) des points de vue consultés
 
 ### Objectifs
 
-- Organiser les données de façon claire et structurée
-- Mettre en avant des croisements pertinents entre comportements et risques
-- Créer un rendu visuel synthétique, accessible et informatif
+- • Organiser les données de façon claire et structurée
+- • Mettre en avant des croisements pertinents entre comportements et risques
+- • Créer un rendu visuel synthétique, accessible et informatif
 
 ### Accès au projet
 
