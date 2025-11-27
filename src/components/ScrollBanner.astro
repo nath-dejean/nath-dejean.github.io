@@ -1,0 +1,212 @@
+---
+// Bannière interactive originale: défilement + réaction au pointeur sur chaque caractère
+const words = [
+  'NATHAN DEJEAN', 'DESIGN', 'UI', 'CRÉATIVITÉ', 'GRAPHISME', 'SEO', 'WEB'
+];
+const separator = '✦';
+---
+<section class="scroll-banner" aria-label="Mots-clés identité & compétences" aria-hidden="true">
+  <div class="marquee-outer">
+    <div class="marquee-track" id="marqueeTrack">
+      {words.map((w, wi) => (
+        <span class="word" data-word-index={wi} aria-hidden="true">
+          {w.split('').map((c, ci) => (
+            <span class="char" data-char-index={ci}>{c === ' ' ? '\u00A0' : c}</span>
+          ))}
+          <span class="char sep" data-sep="true">{separator}</span>
+        </span>
+      ))}
+    </div>
+    <div class="fade-edge left"></div>
+    <div class="fade-edge right"></div>
+  </div>
+</section>
+
+<style>
+  .scroll-banner {
+    position: relative;
+    width: 100vw; /* full-bleed */
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: clamp(2.4rem, 6vw, 4rem);
+    padding-bottom: clamp(2.4rem, 6vw, 4rem);
+    margin: 0;
+    overflow: hidden;
+  }
+  .marquee-outer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1);
+    user-select: none;
+    cursor: default;
+  }
+  .marquee-outer.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .marquee-track {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.4rem,2.9vw,2.9rem);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    will-change: transform;
+    color: #fff;
+    padding-left: 2vw;
+    position: relative;
+    isolation: isolate;
+  }
+  .word { display: inline-flex; margin-right: 0; }
+  .char {
+    position: relative;
+    display: inline-block;
+    padding: 0 .02em;
+    transform-origin: 50% 65%;
+    transition: transform .45s cubic-bezier(.22,.61,.36,1), color .45s, text-shadow .45s, filter .45s;
+    opacity: 0.66;
+    will-change: transform;
+  }
+  .char.sep { opacity: .5; margin-left: 1rem; margin-right: 1rem; }
+  .marquee-track::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--pointerX,50%) 50%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.08) 10%, rgba(255,255,255,0.02) 20%, rgba(255,255,255,0) 32%);
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    transition: background-position .10s ease-out, opacity .25s ease;
+    opacity: .20;
+  }
+  .char.wave {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255,255,255,.45), 0 0 20px rgba(167,114,255,.30), 0 2px 12px rgba(108,243,255,.25);
+  }
+  .char.active { transform: scale(1.30) translateY(-0.03em); opacity: 1; filter: brightness(1.12); }
+  .char.near { transform: scale(1.14); opacity: .90; }
+  .char.far { transform: scale(1.04); opacity: .75; }
+  .fade-edge { position: absolute; top:0; bottom:0; width:14%; pointer-events:none; }
+  .fade-edge.left { left:0; background:linear-gradient(90deg, var(--bg-main,#050715) 0%, rgba(5,7,21,0) 90%); }
+  .fade-edge.right { right:0; background:linear-gradient(270deg, var(--bg-main,#050715) 0%, rgba(5,7,21,0) 90%); }
+  @media (max-width: 720px) {
+    .scroll-banner { width: 100vw; padding-top: clamp(1.8rem, 7vw, 2.6rem); padding-bottom: clamp(1.8rem, 7vw, 2.6rem); }
+    .marquee-track { font-size: clamp(1.15rem,5.2vw,1.85rem); }
+    .fade-edge { width:22%; }
+    .word { margin-right: 0; }
+    .char.sep { margin-left: .55rem; margin-right: .55rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { transform: none !important; }
+  }
+</style>
+
+<script is:inline>
+  const track = document.getElementById('marqueeTrack');
+  const outer = track?.closest('.marquee-outer');
+  if (track && outer) {
+    const baseHTML = track.innerHTML;
+    let totalWidth = track.getBoundingClientRect().width;
+    const vw = window.innerWidth;
+    while (totalWidth < vw * 2.4) {
+      track.innerHTML += baseHTML;
+      totalWidth = track.getBoundingClientRect().width;
+    }
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) outer.classList.add('in'); });
+    }, { threshold: 0.1 });
+    io.observe(outer);
+
+    let current = 0;
+    let target = 0;
+    const ease = 0.11;
+    const speedFactor = 0.15;
+    let drift = 0;
+
+    function updateTarget() {
+      const y = window.scrollY || window.pageYOffset;
+      target = (-(y * speedFactor) + drift) % totalWidth;
+    }
+
+    function rafScroll() {
+      drift -= 0.07;
+      updateTarget();
+      current += (target - current) * ease;
+      track.style.transform = `translate3d(${current}px,0,0)`;
+      requestAnimationFrame(rafScroll);
+    }
+    requestAnimationFrame(rafScroll);
+    window.addEventListener('scroll', updateTarget, { passive: true });
+    window.addEventListener('resize', () => {
+      totalWidth = track.getBoundingClientRect().width;
+      recalcCenters();
+    }, { passive: true });
+
+    // Pré-calcul des centres des caractères pour performance
+    const chars = Array.from(track.querySelectorAll('.char'));
+    let relativeCenters = [];
+    function recalcCenters() {
+      const trackLeft = track.getBoundingClientRect().left;
+      relativeCenters = chars.map(ch => {
+        const r = ch.getBoundingClientRect();
+        return (r.left + r.width / 2) - trackLeft; // centre relatif
+      });
+    }
+    recalcCenters();
+
+    let lastX = 0;
+    let pointerActive = false;
+    function updateWave() {
+      if (!pointerActive) return;
+      const trackRect = track.getBoundingClientRect();
+      const trackLeft = trackRect.left;
+      const relX = lastX - trackLeft;
+      outer.style.setProperty('--pointerX', (relX / trackRect.width * 100) + '%');
+      // trouver index plus proche via recherche linéaire optimisée (car nombre raisonnable)
+      let closestIndex = 0; let minDist = Infinity;
+      for (let i=0;i<relativeCenters.length;i++) {
+        const d = Math.abs(relativeCenters[i] + trackLeft - lastX);
+        if (d < minDist) { minDist = d; closestIndex = i; }
+      }
+      const radiusNear = 140;
+      const radiusFar = 240;
+      for (let i=0;i<chars.length;i++) {
+        const ch = chars[i];
+        ch.classList.remove('active','near','far','wave');
+        const absCenter = relativeCenters[i] + trackLeft;
+        const dist = Math.abs(absCenter - lastX);
+        if (dist < 55) { ch.classList.add('active','wave'); }
+        else if (dist < radiusNear) { ch.classList.add('near','wave'); }
+        else if (dist < radiusFar) { ch.classList.add('far','wave'); }
+      }
+    }
+
+    function rafPointer() {
+      updateWave();
+      requestAnimationFrame(rafPointer);
+    }
+    requestAnimationFrame(rafPointer);
+
+    outer.addEventListener('mousemove', (e) => {
+      pointerActive = true;
+      lastX = e.clientX;
+    }, { passive: true });
+    outer.addEventListener('mouseleave', () => {
+      pointerActive = false;
+      chars.forEach(c => c.classList.remove('active','near','far','wave'));
+    });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      track.style.transform = 'none';
+      outer.classList.add('in');
+      pointerActive = false;
+    }
+  }
+</script>

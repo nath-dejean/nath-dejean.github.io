@@ -13,20 +13,20 @@ Dans le cadre de la SAE5.Crea.01, ce projet propose un travail de création grap
 
 ### Objectifs
 
-- Explorer différentes inspirations et styles graphiques (statue classique Michel-Ange, univers techno, références locales)
-- Concevoir des illustrations dynamiques et réutilisables pour des flyers et supports culturels
-- Mélanger influences européennes (Italie, Berlin...) à des éléments locaux (basket Limoges CSP, porcelaine, Art&Feu)
-- Inscrire la création dans une communication contemporaine, décalée et pop
+- • Explorer différentes inspirations et styles graphiques (statue classique Michel-Ange, univers techno, références locales)
+- • Concevoir des illustrations dynamiques et réutilisables pour des flyers et supports culturels
+- • Mélanger influences européennes (Italie, Berlin...) à des éléments locaux (basket Limoges CSP, porcelaine, Art&Feu)
+- • Inscrire la création dans une communication contemporaine, décalée et pop
 
 ### Réalisations
 
-- Première piste testée puis abandonnée : style rock classique, musique live
-- Direction finale : illustration inspirée de la statue de David, intégration d’éléments graphiques électro, fonds lumineux, collage et jeux de couleurs
-- Production de 3 flyers : 
-  - Flyer Michel-Ange/électro, clin d'œil à l’Italo Disco, ajout d’objets en porcelaine Limoges
-  - Flyer basket Limoges CSP, serviette et ambiance sportive locale
-  - Flyer “Art et Feu”, fond fleuri, flammes, contraste fort et inspiration techno contemporaine
-- Série cohérente : couleurs vives, contours dynamiques, effets nuage/papier collé, ancrage local et européen
+- • Première piste testée puis abandonnée : style rock classique, musique live
+- • Direction finale : illustration inspirée de la statue de David, intégration d’éléments graphiques électro, fonds lumineux, collage et jeux de couleurs
+- • Production de 3 flyers : 
+  - • Flyer Michel-Ange/électro, clin d'œil à l’Italo Disco, ajout d’objets en porcelaine Limoges
+  - • Flyer basket Limoges CSP, serviette et ambiance sportive locale
+  - • Flyer “Art et Feu”, fond fleuri, flammes, contraste fort et inspiration techno contemporaine
+- • Série cohérente : couleurs vives, contours dynamiques, effets nuage/papier collé, ancrage local et européen
 
 <iframe class="iframe-work" style="margin-bottom: 2rem;" src="https://drive.google.com/file/d/1Vw3UiPGa6LMc3Kz-nrcG5OUL5WY-gxj9/preview" width="650" height="450" allow="autoplay" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
 

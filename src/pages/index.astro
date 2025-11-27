@@ -6,6 +6,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 import CVModal from '../components/CVModal.astro';
 import AnimatedBackground from '../components/AnimatedBackground.astro';
+import ScrollBanner from '../components/ScrollBanner.astro';
 ---
 
 <!doctype html>
@@ -227,7 +228,8 @@ import AnimatedBackground from '../components/AnimatedBackground.astro';
 
       section.home-section {
         text-align: left;
-        padding-bottom: clamp(3rem, 6vw, 5rem);
+        padding-top: clamp(2rem, 4vw, 3.5rem);
+        padding-bottom: clamp(2rem, 4vw, 3.5rem);
       }
 
       .home-grid {
@@ -489,6 +491,7 @@ import AnimatedBackground from '../components/AnimatedBackground.astro';
           </div>
         </div>
       </section>
+      <ScrollBanner />
       <section class="home-section">
         <h2 class="text-2xl font-bold mb-2" data-aos="fade-up">À propos du site</h2>
         <p class="text-base text-muted mb-6" data-aos="fade-up" data-aos-delay="100">
