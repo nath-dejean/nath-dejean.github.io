@@ -459,8 +459,8 @@ import ScrollBanner from '../components/ScrollBanner.astro';
           Étudiant en BUT MMI, je donne vie à des interfaces immersives où design, stratégie et créativité s’articulent pour créer des expériences qui marquent.
         </p>
         <div class="hero-actions" data-aos="fade-up" data-aos-delay="400">
-          <a href="/work" class="max-h-14 px-6 py-3 bg-[var(--color-accent)] text-white rounded-xl hover:bg-[var(--color-accent-light)] transition">Voir mes projets</a>
-          <a href="/about" class="max-h-14 px-6 py-3 border border-[var(--color-accent)] text-[var(--color-accent)] rounded-xl hover:bg-[var(--color-surface)] transition">En savoir plus</a>
+          <a href="/work" class="btn btn-primary">Voir mes projets <span class="arrow" aria-hidden="true">➔</span></a>
+          <a href="/about" class="btn btn-outline">En savoir plus <span class="arrow" aria-hidden="true">➔</span></a>
         </div>
           </div>
           <div class="hero-showcase">
@@ -483,9 +483,8 @@ import ScrollBanner from '../components/ScrollBanner.astro';
           </div>
         </div>
         <div class="justify-self-center" data-aos="fade-left" data-aos-delay="600">
-          <button onclick="window.openCVModal()" class="inline-flex items-center justify-end gap-2 px-5 py-2 border border-[var(--color-accent)] bg-[var(--color-accent)] text-white rounded-lg hover:bg-[var(--color-surface)] transition cursor-pointer">
-            Voir mon CV
-            <span aria-hidden="true">↗</span>
+          <button onclick="window.openCVModal()" class="btn btn-primary cursor-pointer">
+            Voir mon CV <span aria-hidden="true" class="arrow">➔</span>
           </button>
         </div>
           </div>
