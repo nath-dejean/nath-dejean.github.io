@@ -8,9 +8,12 @@
 		<div class="cv-modal-header">
 			<div class="cv-header-left">
 				<h2 id="cv-modal-title">Curriculum Vitae</h2>
-				<span class="cv-subtitle">Nathan DEJEAN · Étudiant BUT MMI</span>
+				<span class="cv-subtitle" id="cv-subtitle">Nathan DEJEAN · Étudiant BUT MMI</span>
 			</div>
 			<div class="cv-header-actions">
+				<button class="cv-action-btn lang-btn" id="toggle-lang" title="Switch to English" aria-label="Switch to English">
+					<img class="lang-icon-img" src="/Flag_of_the_United_Kingdom.webp" alt="" width="20" height="14" />
+				</button>
 				<button class="cv-action-btn" id="zoom-out" title="Zoom out" aria-label="Zoom out">
 					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 						<circle cx="11" cy="11" r="8"></circle>
@@ -56,7 +59,7 @@
 
 				<iframe 
 					id="cv-iframe" 
-					src="NathanDEJEAN_WebCVFR-violet.pdf#toolbar=0"
+					src="/NathanDEJEAN_WebCVFR-violet.pdf#toolbar=0"
 					title="Curriculum Vitae"
 					style="display: none;"
 				></iframe>
@@ -170,6 +173,12 @@
 		transform: translateY(-2px);
 	}
 
+	/* Language toggle button tweaks */
+	.lang-btn { font-size: 16px; line-height: 1; }
+	.lang-icon-img { display: block; width: 20px; height: 14px; border-radius: 0 !important; object-fit: cover; }
+	/* Override global img styles that might force border-radius */
+	:global(img.lang-icon-img) { border-radius: 0 !important; }
+
 	.cv-contact-btn {
 		background: linear-gradient(135deg, #6cf3ff, #a772ff);
 		color: rgba(5, 5, 17, 0.92);
@@ -279,18 +288,57 @@
 </style>
 
 <script>
-	// CV Modal functionality
 	const modal = document.getElementById('cv-modal');
 	const iframe = document.getElementById('cv-iframe');
 	const loading = document.querySelector('.cv-loading');
 	const zoomInBtn = document.getElementById('zoom-in');
 	const zoomOutBtn = document.getElementById('zoom-out');
 	const downloadBtn = document.getElementById('download-cv');
+	const langBtn = document.getElementById('toggle-lang');
+	const subtitleEl = document.getElementById('cv-subtitle');
 	
 	let currentZoom = 1;
 	const zoomStep = 0.1;
 	const minZoom = 1;
 	const maxZoom = 2;
+
+	let currentLang = 'fr';
+	const CV_PATH = {
+		fr: '/NathanDEJEAN_WebCVFR-violet.pdf',
+		en: '/NathanDEJEAN_WebCVEN-purple.pdf'
+	};
+
+	const SUBTITLE_TEXT = {
+		fr: 'Nathan DEJEAN · Étudiant BUT MMI',
+		en: 'Nathan DEJEAN · MMI Undergraduate Student'
+	};
+
+	function setLanguage(lang) {
+		if (!iframe) return;
+		currentLang = lang;
+
+		if (loading) loading.style.display = 'flex';
+		iframe.classList.remove('loaded');
+		iframe.style.display = 'none';
+		iframe.src = `${CV_PATH[lang]}#toolbar=0`;
+
+		if (langBtn) {
+			if (lang === 'fr') {
+				langBtn.title = 'Switch to English';
+				langBtn.setAttribute('aria-label', 'Switch to English');
+				langBtn.innerHTML = '<img class="lang-icon-img" src="/Flag_of_the_United_Kingdom.webp" alt="" width="20" height="14" />';
+			} else {
+				langBtn.title = 'Passer en français';
+				langBtn.setAttribute('aria-label', 'Passer en français');
+				langBtn.innerHTML = '<img class="lang-icon-img" src="/Flag_of_France.webp" alt="" width="20" height="14" />';
+			}
+		}
+
+		// update subtitle text
+		if (subtitleEl) {
+			subtitleEl.textContent = SUBTITLE_TEXT[lang];
+		}
+	}
 
 	// Open modal
 	window.openCVModal = () => {
@@ -358,11 +406,22 @@
 	if (downloadBtn) {
 		downloadBtn.addEventListener('click', () => {
 			const link = document.createElement('a');
-			link.href = '/NathanDEJEAN_WebCVFR-violet.pdf';
-			link.download = 'NathanDEJEAN_WebCVFR-violet.pdf';
+			const path = currentLang === 'fr' ? CV_PATH.fr : CV_PATH.en;
+			link.href = path;
+			link.download = path.split('/').pop() || 'CV.pdf';
 			document.body.appendChild(link);
 			link.click();
 			document.body.removeChild(link);
 		});
 	}
+
+	// Language toggle handler
+	if (langBtn) {
+		langBtn.addEventListener('click', () => {
+			setLanguage(currentLang === 'fr' ? 'en' : 'fr');
+		});
+	}
+
+	// Ensure initial language state matches iframe
+	setLanguage('fr');
 </script>
