@@ -6,7 +6,8 @@ import { SITE_TITLE } from "../consts";
 <header class="site-header">
   <div class="nav-shell">
     <a class="brand" href="/">
-      <span class="brand-badge">ND</span>
+      <!-- <span class="brand-badge">ND</span> -->
+      <img class="logo-img" src="/blackholeSiteLogoLow.png" alt="Nathan Dejean Logo" width="60" height="60"/>
       <span class="brand-text">{SITE_TITLE}</span>
     </a>
     <nav class="nav-links" aria-label="Navigation principale">
@@ -28,7 +29,7 @@ import { SITE_TITLE } from "../consts";
     position: sticky;
     top: 0;
     z-index: 4;
-    padding: clamp(1.2rem, 3vw, 1.8rem) clamp(1.4rem, 4vw, 3rem);
+    padding: clamp(1rem, 2.5vw, 1.2rem) clamp(1.2rem, 3vw, 2rem);
     transition: padding 0.35s ease, backdrop-filter 0.35s ease, background 0.35s ease, border-color 0.35s ease;
     backdrop-filter: blur(20px);
     background: rgba(5, 5, 17, 0.5);
@@ -104,6 +105,10 @@ import { SITE_TITLE } from "../consts";
     transition: transform 0.35s ease;
   }
 
+  .brand .logo-img {
+    box-shadow: none;
+  }
+
   .site-header:hover .brand-badge {
     transform: rotate(-6deg) scale(1.05);
   }
@@ -175,7 +180,7 @@ import { SITE_TITLE } from "../consts";
   @media (max-width: 720px) {
     .nav-shell {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 1rem;
     }
 
@@ -183,5 +188,7 @@ import { SITE_TITLE } from "../consts";
       width: 100%;
       justify-content: space-between;
     }
+
+    .brand { align-self: center; }
   }
 </style>
