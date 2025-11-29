@@ -1,5 +1,6 @@
 ---
 import BasicLayout from '../layouts/BasicLayout.astro';
+import CVModal from '../components/CVModal.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
 const title = "À propos";
@@ -73,13 +74,7 @@ const heroImage = "/PhotoProfilv3.jpg";
 
 			.profile-image {
 				position: relative;
-				/* border-radius: 20px; */
 				overflow: hidden;
-				/* box-shadow: 
-					0 0 0 1px rgba(255, 255, 255, 0.08),
-					0 24px 60px -20px rgba(0, 0, 0, 0.4),
-					0 8px 24px -8px rgba(108, 243, 255, 0.15); */
-				/* background: linear-gradient(135deg, rgba(108, 243, 255, 0.08), rgba(167, 114, 255, 0.08)); */
 				transform-origin: center;
 				transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 			}
@@ -92,7 +87,6 @@ const heroImage = "/PhotoProfilv3.jpg";
 				content: "";
 				position: absolute;
 				inset: 0;
-				/* background: linear-gradient(135deg, rgba(108, 243, 255, 0.12), rgba(167, 114, 255, 0.08)); */
 				opacity: 0;
 				transition: opacity 0.5s ease;
 				pointer-events: none;
@@ -153,6 +147,14 @@ const heroImage = "/PhotoProfilv3.jpg";
 				font-size: 0.7em;
 			}
 
+			.cv-cta {
+				margin-top: clamp(2rem, 4vw, 3rem);
+				display: flex;
+				justify-content: center;
+			}
+
+			.cv-cta .btn { min-width: 220px; }
+
 			@media (max-width: 768px) {
 				article {
 					padding: clamp(2rem, 8vw, 3rem) clamp(1rem, 4vw, 1.5rem) clamp(3rem, 10vw, 4rem);
@@ -192,12 +194,12 @@ const heroImage = "/PhotoProfilv3.jpg";
 			<section class="about-body reveal">
 				<div class="about-prose">
 					<p>
-						Hello, moi c'est Nathan Dejean — étudiant en 2<sup>ème</sup> année de BUT MMI (Métiers du Multimédia et de l'Internet).
+						Bonjour, moi c'est Nathan Dejean, étudiant en 3<sup>ème</sup> année de BUT MMI (Métiers du Multimédia et de l'Internet).
 						Je m'intéresse particulièrement à la conception graphique, l'UX/UI design et à tout ce qui touche à la création numérique.
 					</p>
 
 					<p>
-						Dans le cadre de mes études, je participe à de nombreux projets — en équipe ou en solo — mêlant design, développement web, stratégie de communication, audiovisuel ou encore création de contenu.
+						Dans le cadre de mes études, je participe à de nombreux projets à la fois en équipe ou en solo, mêlant design, développement web, stratégie de communication, audiovisuel ou encore création de contenu.
 						Ces expériences me permettent d'explorer une diversité de savoir-faire tout en cultivant une approche créative et rigoureuse.
 					</p>
 
@@ -206,10 +208,16 @@ const heroImage = "/PhotoProfilv3.jpg";
 					</p>
 
 					<p>
-						Je suis toujours curieux de découvrir de nouvelles choses et d'échanger avec d'autres créatifs. N'hésite pas à me suivre ou à me contacter via <a href="https://www.linkedin.com/in/nathandejean/" target="_blank">LinkedIn</a> ou <a href="https://github.com/nath-dejean" target="_blank">GitHub</a>.
+						Je suis toujours curieux de découvrir de nouvelles choses et d'échanger avec d'autres créatifs. N'hésitez pas à me suivre ou à me contacter via <a href="https://www.linkedin.com/in/nathandejean/" target="_blank">LinkedIn</a>, <a href="https://github.com/nath-dejean" target="_blank">GitHub</a> ou directement par <a href="mailto:nathan.dejean@etu.unilim.fr">email</a>.
 					</p>
+				</div>
+				<div class="cv-cta">
+					<button onclick="window.openCVModal()" class="btn btn-primary cursor-pointer" aria-haspopup="dialog">
+						Voir mon CV <span class="arrow" aria-hidden="true">➔</span>
+					</button>
 				</div>
 			</section>
 		</div>
 	</article>
 </BasicLayout>
+<CVModal />

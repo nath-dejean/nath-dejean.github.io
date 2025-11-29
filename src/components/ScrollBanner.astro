@@ -1,7 +1,6 @@
 ---
-// Bannière interactive originale: défilement + réaction au pointeur sur chaque caractère
 const words = [
-  'NATHAN DEJEAN', 'DESIGN', 'UI', 'CRÉATIVITÉ', 'GRAPHISME', 'SEO', 'WEB'
+  'DESIGN', 'UI', 'CRÉATIVITÉ', 'GRAPHISME', 'SEO', 'ACCESSIBILITÉ', 'WEB', 'PROTOTYPAGE', 'EXPÉRIENCE'
 ];
 const separator = '✦';
 ---
@@ -25,7 +24,7 @@ const separator = '✦';
 <style>
   .scroll-banner {
     position: relative;
-    width: 100vw; /* full-bleed */
+    width: 100vw;
     left: 50%;
     transform: translateX(-50%);
     padding-top: clamp(2.4rem, 6vw, 4rem);
@@ -127,7 +126,7 @@ const separator = '✦';
     let current = 0;
     let target = 0;
     const ease = 0.11;
-    const speedFactor = 0.15;
+    const speedFactor = 0.2;
     let drift = 0;
 
     function updateTarget() {
@@ -136,7 +135,7 @@ const separator = '✦';
     }
 
     function rafScroll() {
-      drift -= 0.07;
+      drift -= 0.1;
       updateTarget();
       current += (target - current) * ease;
       track.style.transform = `translate3d(${current}px,0,0)`;
@@ -149,14 +148,13 @@ const separator = '✦';
       recalcCenters();
     }, { passive: true });
 
-    // Pré-calcul des centres des caractères pour performance
     const chars = Array.from(track.querySelectorAll('.char'));
     let relativeCenters = [];
     function recalcCenters() {
       const trackLeft = track.getBoundingClientRect().left;
       relativeCenters = chars.map(ch => {
         const r = ch.getBoundingClientRect();
-        return (r.left + r.width / 2) - trackLeft; // centre relatif
+        return (r.left + r.width / 2) - trackLeft;
       });
     }
     recalcCenters();
@@ -169,7 +167,6 @@ const separator = '✦';
       const trackLeft = trackRect.left;
       const relX = lastX - trackLeft;
       outer.style.setProperty('--pointerX', (relX / trackRect.width * 100) + '%');
-      // trouver index plus proche via recherche linéaire optimisée (car nombre raisonnable)
       let closestIndex = 0; let minDist = Infinity;
       for (let i=0;i<relativeCenters.length;i++) {
         const d = Math.abs(relativeCenters[i] + trackLeft - lastX);

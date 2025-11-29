@@ -72,7 +72,7 @@
 	.cv-modal {
 		position: fixed;
 		inset: 0;
-		z-index: 9999;
+		z-index: 999999;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -96,6 +96,7 @@
 
 	.cv-modal-container {
 		position: relative;
+		z-index: 999999;
 		width: 95vw;
 		max-width: 1400px;
 		height: 92vh;
@@ -173,10 +174,8 @@
 		transform: translateY(-2px);
 	}
 
-	/* Language toggle button tweaks */
 	.lang-btn { font-size: 16px; line-height: 1; }
 	.lang-icon-img { display: block; width: 20px; height: 14px; border-radius: 0 !important; object-fit: cover; }
-	/* Override global img styles that might force border-radius */
 	:global(img.lang-icon-img) { border-radius: 0 !important; }
 
 	.cv-contact-btn {
@@ -334,13 +333,11 @@
 			}
 		}
 
-		// update subtitle text
 		if (subtitleEl) {
 			subtitleEl.textContent = SUBTITLE_TEXT[lang];
 		}
 	}
 
-	// Open modal
 	window.openCVModal = () => {
 		if (modal) {
 			modal.setAttribute('aria-hidden', 'false');
@@ -348,7 +345,6 @@
 		}
 	};
 
-	// Close modal
 	const closeModal = () => {
 		if (modal) {
 			modal.setAttribute('aria-hidden', 'true');
@@ -356,19 +352,16 @@
 		}
 	};
 
-	// Close on overlay click or close button
 	document.querySelectorAll('[data-close-modal]').forEach(element => {
 		element.addEventListener('click', closeModal);
 	});
 
-	// Close on Escape key
 	document.addEventListener('keydown', (e) => {
 		if (e.key === 'Escape' && modal?.getAttribute('aria-hidden') === 'false') {
 			closeModal();
 		}
 	});
 
-	// Handle iframe load
 	if (iframe) {
 		iframe.addEventListener('load', () => {
 			if (loading) loading.style.display = 'none';
@@ -402,7 +395,6 @@
 		});
 	}
 
-	// Download CV
 	if (downloadBtn) {
 		downloadBtn.addEventListener('click', () => {
 			const link = document.createElement('a');
@@ -415,13 +407,11 @@
 		});
 	}
 
-	// Language toggle handler
 	if (langBtn) {
 		langBtn.addEventListener('click', () => {
 			setLanguage(currentLang === 'fr' ? 'en' : 'fr');
 		});
 	}
 
-	// Ensure initial language state matches iframe
 	setLanguage('fr');
 </script>
