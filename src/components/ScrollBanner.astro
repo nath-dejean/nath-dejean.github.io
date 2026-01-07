@@ -3,18 +3,33 @@ const words = [
   'DESIGN', 'UI', 'CRÉATIVITÉ', 'GRAPHISME', 'SEO', 'ACCESSIBILITÉ', 'WEB', 'PROTOTYPAGE', 'EXPÉRIENCE'
 ];
 const separator = '✦';
+const linkedWords = {
+  'WEB': 'https://multisweeper-bp0q.onrender.com/'
+};
 ---
 <section class="scroll-banner" aria-label="Mots-clés identité & compétences" aria-hidden="true">
   <div class="marquee-outer">
     <div class="marquee-track" id="marqueeTrack">
-      {words.map((w, wi) => (
-        <span class="word" data-word-index={wi} aria-hidden="true">
-          {w.split('').map((c, ci) => (
-            <span class="char" data-char-index={ci}>{c === ' ' ? '\u00A0' : c}</span>
-          ))}
-          <span class="char sep" data-sep="true">{separator}</span>
-        </span>
-      ))}
+      {words.map((w, wi) => {
+        const href = linkedWords[w];
+        const inner = (
+          <>
+            {w.split('').map((c, ci) => (
+              <span class="char" data-char-index={ci}>{c === ' ' ? '\u00A0' : c}</span>
+            ))}
+            <span class="char sep" data-sep="true">{separator}</span>
+          </>
+        );
+        return href ? (
+          <a class="word word-link" href={href} target="_blank" rel="noopener noreferrer" data-word-index={wi} aria-hidden="true">
+            {inner}
+          </a>
+        ) : (
+          <span class="word" data-word-index={wi} aria-hidden="true">
+            {inner}
+          </span>
+        );
+      })}
     </div>
     <div class="fade-edge left"></div>
     <div class="fade-edge right"></div>
@@ -64,6 +79,16 @@ const separator = '✦';
     isolation: isolate;
   }
   .word { display: inline-flex; margin-right: 0; }
+  .word-link {
+    color: inherit;
+    text-decoration: none;
+    background: none;
+    cursor: default;
+  }
+  .word-link:hover {
+    color: inherit;
+    background-size: 0;
+  }
   .char {
     position: relative;
     display: inline-block;
